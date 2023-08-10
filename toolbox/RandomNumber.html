@@ -1,0 +1,164 @@
+<!DOCTYPE 源码：Daniel Hearn>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <title>随机数生成器</title>
+	  <link rel="shortcut icon"  href="../images/icon.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+body {
+  background: #ececec;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-weight: 300;
+}
+.note {
+	font-family: "Great Vibes", cursive;
+	font-size: 1rem;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	color: black;
+	letter-spacing: 2px;
+	text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+}
+
+#generator {
+  background: white;
+  max-width: 25em;
+  animation: fadeIn 1s ease-in-out;
+  backface-visibility: hidden;
+  transition: all 0.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#title {
+  color: #ffffff;
+  font-size: 1.2em;
+  padding: 1em;
+  background: #512DA8;
+}
+
+#rNum {
+  padding: 0.2em;
+  font-size: 6em;
+  margin: 0;
+  color: #212121;
+  transition: padding 0.2s;
+}
+
+#inputs, #headers {
+  display: flex;
+  align-content: center;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  color: #212121;
+}
+#inputs input, #headers input {
+  -webkit-appearance: none;
+  border: 0;
+  font-size: 1.1em;
+  width: 20%;
+  border-bottom: 5px solid #512DA8;
+  margin-bottom: 2em;
+  background: #f0f0f0;
+  padding: 0.4em;
+  border-radius: 0;
+  -webkit-appearance: none;
+  transition: margin 0.2s;
+}
+#inputs p, #headers p {
+  font-size: 1em;
+  color: #212121;
+  font-weight: 400;
+}
+#inputs #generate, #headers #generate {
+  webkit-appearance: none;
+  width: 100%;
+  padding: 1em 0;
+  color: #ffffff;
+  font-size: 1.2em;
+  margin: 0;
+  display: block;
+  background: #673AB7;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+}
+#inputs #generate:hover, #headers #generate:hover {
+  background: #512DA8;
+}
+
+@media screen and (max-height: 30em) {
+  #generator #rNum {
+    padding: 0;
+    padding-top: 0.1em;
+  }
+
+  #inputs input {
+    margin-bottom: 1em;
+  }
+}
+    </style>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  </head>
+  <body>
+   <!-- partial:index.partial.html -->
+<div ng-app="numberApp">
+  <div ng-controller="NumberController" data-ng-init="loadNum()"> 
+    <div id="generator">
+      <div id="title">随机数生成器</div>
+      <p id="rNum">{{ randomNumber }}</p>
+      <div id="inputContainer">
+        <div id="headers"> 
+          <p>最小值</p>
+          <p>最大值</p>
+        </div>
+        <div id="inputs">
+          <input id="min" ng-model="min" min="-9999999999" max="9999999999" type="number"/>
+          <input id="max" ng-model="max" min="-9999999999" max="9999999999" type="number"/>
+          <input id="generate" type="submit" value="生成随机数" ng-click="getInput()"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js'></script>
+    <script>
+var module = angular.module('numberApp', []);
+
+module.controller('NumberController', function($scope) {
+  $scope.getInput = function() {
+    if($scope.min > $scope.max) {
+      //Swap variables
+      [$scope.min,$scope.max] = [$scope.max,$scope.min]; 
+    }
+    $scope.generateNumber();
+  }
+  
+  $scope.loadNum = function() {
+    $scope.min = 1;
+    $scope.max = 60;
+    $scope.generateNumber();
+  }
+
+  $scope.generateNumber = function() {
+    $scope.randomNumber = Math.floor(Math.random()*($scope.max-$scope.min+1)+$scope.min);
+  }
+});
+  </script>
+
+  </body>
+</html>
