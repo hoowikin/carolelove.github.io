@@ -1,0 +1,539 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>扫雷</title>
+	<link rel="shortcut icon"  href="images/icon.png"/>
+<style type="text/css">
+@charset "utf-8";
+/* CSS Document */
+*{
+    margin:0;
+    padding:0;
+    font-family:微软雅黑；;
+}
+.main{
+    width:750px;
+    height:480px;
+    position:absolute;
+    left:200px;
+    top:100px;
+    border:#000 3px outset;
+}
+.main .shezhi{
+    width:700px;
+    height:30px;
+    border:1px #666 outset;
+    position:absolute;
+    left:50%;
+    margin-left:-350px;
+    top:10px;
+}
+.main .shezhi .start{
+    width:220px;
+    height:24px;
+    position:absolute;
+    left:230px;
+    top:2px;
+}
+.main .shezhi .start .shuoming{
+    height:24px;
+    width:100px;
+    position:absolute;
+    left:0;
+    line-height:24px;
+    text-align:center;
+    font-size:16px;
+    font-weight:bold;
+}
+#number{
+    width:40px;
+    height:22px;
+    position:absolute;
+    left:100px;
+    border:1px #666666 inset;
+    border-radius:5px;
+    background:#0CC;
+    text-align:center;
+    font-weight:bold;
+    color:#fff;
+    font-size:18px;
+}
+#btn{
+    position:absolute;
+    top:0;
+    right:10px;
+    height:25px;
+}
+.main .zhedang{
+    width:700px;
+    height:380px;
+    position:absolute;
+    left:50%;
+    margin-left:-350px;
+    top:50px;
+    z-index:100;
+}
+.main .saolei{
+    width:691px;
+    height:368px;
+    position:absolute;
+    left:50%;
+    margin-left:-350px;
+    top:50px;
+    border:#999 4px inset;
+    text-align:center;
+    padding-top:1px;
+}
+.main .saolei .leiqu{
+    display:inline-block;
+    width:22px;
+    height:22px;
+    border:#000 1px solid;
+    margin-left:-1px;
+    margin-top:-1px;
+}
+.main .saolei .leiqu .zhengmian{
+    width:21px;
+    height:21px;
+    border:1px #CCCCCC outset;
+    background:#093;
+    opacity:1;
+    position:absolute;
+    z-index:40;
+}
+.main .saolei .leiqu .chaqi{
+    width:21px;
+    height:21px;
+    border:1px #CCCCCC outset;
+    background:#093;
+    opacity:1;
+    position:absolute;
+    z-index:30;
+}
+.main .saolei .leiqu .lei .lei_i{
+    width:22px;
+    height:22px;
+    background:url(http://ogzafx64b.bkt.clouddn.com/lei.jpg) no-repeat scroll -5px -3px;
+    opacity:1;
+    position:absolute;
+    border-radius:11px;
+}
+.main .saolei .leiqu .lei,
+.main .saolei .leiqu .shuzi{
+    width:22px;
+    height:22px;
+    opacity:1;
+    border:#CCC 1px solid;
+    position:absolute;
+    line-height:22px;
+    text-align:center;
+    font-weight:bold;
+    font-size:18px;
+    background:#FFF;
+}
+.main .saolei .leiqu .lei{
+    z-index:1;
+    opacity:0;
+}
+.main .saolei .leiqu .shuzi{
+    z-index:20;
+    cursor:default;
+}
+.main .saolei .leiqu .chaqi .sanjiao{
+    position:absolute;
+    width:0;
+    height:0;
+    border-top:6px solid transparent;
+    border-bottom:6px solid transparent;
+    border-right:12px solid #f00;
+    left:1px;
+    top:1px;
+}
+.main .saolei .leiqu .chaqi .shuxian{
+    position:absolute;
+    width:1px;
+    height:18px;
+    top:1px;
+    left:13px;
+    background:#FFF;
+}
+.main .saolei .leiqu .chaqi .hengxian{
+    position:absolute;
+    width:10px;
+    height:1px;
+    bottom:2px;
+    left:8px;
+    background:#FFF;
+}
+.main .zhuangtai{
+    width:700px;
+    height:30px;
+    position:absolute;
+    left:50%;
+    margin-left:-350px;
+    bottom:10px;
+    border:#666 1px outset;
+}
+.main .zhuangtai .time{
+    width:100px;
+    height:30px;
+    position:absolute;
+    left:100px;
+}
+.main .zhuangtai .shuliang{
+    width:100px;
+    height:30px;
+    position:absolute;
+    right:100px;
+}
+.main .zhuangtai .img_zhuangtai{
+    width:26px;
+    height:26px;
+    border:#666 2px inset;
+    border-radius:13px;
+    position:absolute;  
+}
+#img_time{
+    left:10px;
+    background:url(http://ogzafx64b.bkt.clouddn.com/lei.jpg) no-repeat scroll -2px -2px;
+}
+#img_shuliang{
+    right:10px;
+    background:url(http://ogzafx64b.bkt.clouddn.com/lei.jpg) no-repeat scroll -3px -1px;
+}
+.main .zhuangtai .text_zhuangtai{
+    width:40px;
+    height:20px;
+    border:2px #666 inset;
+    background:#060;
+    position:absolute;
+    text-align:center;
+    font-weight:bold;
+    color:#FFF;
+    border-radius:6px;
+    top:3px;
+}
+#text_time{
+    left:50px;
+}
+#text_shuliang{
+    right:50px;
+}
+#shuoming{
+    width:260px;
+    height:200px;
+    background:#CCC;
+    position:absolute;
+    left:980px;
+    top:130px;
+    border-radius:5px;
+    box-shadow:10px 10px 10px #99CC33;
+    padding:20px;
+} 
+
+</style>
+</head>
+
+<body>
+<h1 style="text-align: center;">扫雷小游戏&nbsp;</h1>
+<p style="text-align: center">源码来源：<a href="https://www.imooc.com/article/14690"><span style="text-align: center"></span>https://www.imooc.com/article/14690&nbsp;</a>
+  <p style="text-align: center"><a href="index.html">网站主页</a></p>
+</p>
+<div class="main" id="main">
+    <div class="shezhi">
+        <div class="start">
+            <div class="shuoming">输入雷数</div>
+            <input type="text" id="number"/>
+            <input type="button" id="btn" value="开始游戏" onclick="startgame()"/>
+        </div>
+  </div>
+    <div class="zhedang" id="zhedang" onclick="zhedangtishi()"></div>
+    <div class="saolei" id="saolei">
+        <div class="leiqu" id="leiqu_{{index}}">
+            <div class="zhengmian" id="zhengmian_{{index}}" onmousedown="chaqi(event,{{index}})" onclick="diankai({{index}})"></div>
+            <div class="chaqi" id="chaqi_{{index}}" onmousedown="quxiaochaqi(event,{{index}})">
+                <div class="sanjiao"></div>
+                <div class="shuxian"></div>
+                <div class="hengxian"></div>
+            </div>
+            <div class="lei" id="lei_{{index}}" onclick="cailei({{index}})" onmousedown="chaqi(event,{{index}})">
+                <div class="lei_i"></div>
+            </div>
+            <div class="shuzi" id="shuzi_{{index}}" onmousedown="areadiankai(event,{{index}})"></div>
+        </div>
+    </div>
+    <div class="zhuangtai" id="zhuangtai">
+        <div class="time" id="time">
+            <div class="img_zhuangtai" id="img_time"></div>
+            <div class="text_zhuangtai" id="text_time">0</div>
+        </div>
+        <div class="shuliang" id="shuliang">
+            <div class="img_zhuangtai" id="img_shuliang"></div>
+            <div class="text_zhuangtai" id="text_shuliang">0</div>
+        </div>
+    </div>
+</div>
+<div id="shuoming">
+    <h2>游戏说明</h2>
+    <ul>
+        <li>请不要禁止弹出窗口</li>
+        <li>在右上角输入框输入雷数，数量为1-150</li>
+        <li>点击开始游戏，即可开始扫雷</li>
+        <li>左键翻开格子，右键插上红旗</li>
+        <li>左右键同时点击数字，可翻开数字周围格子</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    // JavaScript Document
+    function g(id){//通用获取已知id或classname的元素
+        if(id.substr(0,1)=='.'){
+            return document.getElementsByClassName(id.substr(1));
+        }
+        return document.getElementById(id);
+    }
+    function g2(div,classname){//获取某个已知id的元素下，某个classname的元素
+        return g(div).getElementsByClassName(classname.substr(1));
+    }
+    function Random(a,b){//随机范围内的一个整数
+        return Math.ceil(Math.random()*(Math.max(a,b)-Math.min(a,b)+1)+Math.min(a,b)-0.5);
+    }
+    function addelem(div,classname,k,index){//给某元素（id）下，写入k个元素（classname），并将一个index替换为0-k的顺序数
+        var out_turn=[];
+        for(var i=0;i<k;i++){
+            var _html=g2(div,classname)[0].innerHTML.replace(index,i)
+                                                .replace(/^\s*/,'')
+                                                .replace(/\s*$/,'');;
+            out_turn.push(_html);
+        }
+        g2(div,classname)[0].innerHTML=out_turn.join('');
+    }
+    function addelemg(div,classname,k,index){//给某元素（id）下，写入k个元素（classname），并将全部index替换为0-k的顺序数
+        var out_turn=[];
+        var reg=new RegExp(index,'g');
+        for(var i=0;i<k;i++){
+            var _html=g2(div,classname)[0].innerHTML.replace(reg,i)
+                                                .replace(/^\s*/,'')
+                                                .replace(/\s*$/,'');;
+            out_turn.push(_html);
+        }
+        g2(div,classname)[0].innerHTML=out_turn.join('');
+    }
+    function chaqi(event,n){//右键插旗函数
+        var e=event.button;
+        if(e==2){
+            var _id='chaqi_'+n; 
+            g(_id).style.zIndex=50;
+            g('text_shuliang').innerHTML=+g('text_shuliang').innerHTML-1;  
+        }
+    }
+    function quxiaochaqi(event,n){//取消插旗函数
+        var e=event.button;
+        if(e==2){
+            var _id='chaqi_'+n; 
+            g(_id).style.zIndex=30;
+            g('text_shuliang').innerHTML=+g('text_shuliang').innerHTML+1;  
+        }
+    }
+    function diankai(n){//点开绿色块函数
+        if(start_index==1){
+            start_index=0;
+            arr_lei=[];
+            if(n%30>0 && n%30<29)
+                var id=[n-31,n-30,n-29,n-1,n,n+1,n+29,n+30,n+31];
+            else if(n%30==0)
+                var id=[n-30,n-29,n,n+1,n+30,n+31];
+            else var id=[n-31,n-30,n-1,n,n+29,n+30];
+            for(var i=0;i<480;i++){
+                if(id.inarr(i)==false) arr_lei.push(i);
+            }
+            var number=g('number').value;
+            bulei(number);
+            diankai(n);
+        }
+        else {
+            var _id='shuzi_'+n;
+            g(_id).style.zIndex=50;
+            g(_id).innerHTML=leishu(n);
+            if(g(_id).innerHTML==''){
+                liansuo(n);
+            }
+            shengli();
+        }
+    }
+    Array.prototype.inarr=function(obj){
+        for(var iii=0;iii<this.length;iii++){
+            if(this[iii]==obj){
+                return true;
+                break;
+            }
+            continue;
+        }
+        return false;
+    }
+    function leishu(n){
+        var id=[];
+        if(n%30>0 && n%30<29)
+            id=[n-31,n-30,n-29,n-1,n+1,n+29,n+30,n+31];
+        else if(n%30==0)
+            id=[n-30,n-29,n+1,n+30,n+31];
+        else id=[n-31,n-30,n-1,n+29,n+30];
+        var n_lei=0;
+        for(var i=0;i<id.length;i++){
+            if(id[i]>=0&&id[i]<480){
+                if(g('lei_'+id[i]).style.zIndex==45) n_lei++;
+            }
+        }
+        if(n_lei==0) n_lei='';
+        if(n_lei==1) g('shuzi_'+n).style.color='#003';
+        else if(n_lei==2) g('shuzi_'+n).style.color='#0f0';
+        else if(n_lei==3) g('shuzi_'+n).style.color='#f00';
+        else if(n_lei==4) g('shuzi_'+n).style.color='#006';
+        else if(n_lei==5) g('shuzi_'+n).style.color='#903';
+        else if(n_lei==6) g('shuzi_'+n).style.color='#066';
+        else if(n_lei==7) g('shuzi_'+n).style.color='#000';
+        else g('shuzi_'+n).style.color='#666';
+        return n_lei;
+    }
+    function liansuo(n){//连锁点开数字为空的绿色块函数
+        var id=[];
+        if(n%30>0 && n%30<29)
+            id=[n-31,n-30,n-29,n-1,n+1,n+29,n+30,n+31];
+        else if(n%30==0)
+            id=[n-30,n-29,n+1,n+30,n+31];
+        else id=[n-31,n-30,n-1,n+29,n+30];
+        for(var i=0;i<id.length;i++){
+            if(id[i]>=0&&id[i]<480){
+                var _id='shuzi_'+id[i];
+                g(_id).innerHTML=leishu(id[i]);
+                if(g(_id).style.zIndex!=50){
+                    g(_id).style.zIndex=50;
+                    diankai(id[i]);
+                }
+            }
+        }
+    }
+    function cailei(n){
+        for(var i=0;i<480;i++){
+            g('.lei')[i].style.opacity=0.6;
+        }
+        g('lei_'+n).style.opacity=1;
+        clearTimeout(t);
+        alert('你踩到地雷了！');
+        g('zhedang').style.zIndex=100;
+    }
+    function areadiankai(event,n){
+        var e=event.button;
+        if(e==2&&g('shuzi_'+n).innerHTML!=''){
+            area(n);
+        }
+    }
+    function area(n){
+        var id=[];
+        if(n%30>0 && n%30<29)
+            id=[n-31,n-30,n-29,n-1,n+1,n+29,n+30,n+31];
+        else if(n%30==0)
+            id=[n-30,n-29,n+1,n+30,n+31];
+        else id=[n-31,n-30,n-1,n+29,n+30];
+        var n_chaqi=0;
+        var n_shuzi=g('shuzi_'+n).innerHTML;
+        var id_zhengmian=[];
+        for(var i=0;i<id.length;i++){
+            if(id[i]>=0&&id[i]<480){
+                var _id2='chaqi_'+id[i];
+                if(g(_id2).style.zIndex==50){
+                    n_chaqi++;
+                }
+                if(g('shuzi_'+id[i]).style.zIndex!=50&&g(_id2).style.zIndex!=50){
+                    id_zhengmian.push(id[i]);
+                }
+            }
+        }
+        if(n_shuzi==n_chaqi){
+            for(var i=0;i<id_zhengmian.length;i++){
+                if(g('lei_'+id_zhengmian[i]).style.zIndex==45){
+                    cailei(id_zhengmian[i]);
+                    break;
+                }
+                diankai(id_zhengmian[i]);
+            }
+        }
+    }
+    var arr_lei=[];
+    function bulei(n){
+        for(var i=0;i<n;i++){
+            var ran=Random(0,arr_lei.length-1);
+            //var k=arr_lei.length;
+            g('lei_'+arr_lei[ran]).style.zIndex=45;
+            arr_lei.splice(ran,1);
+        }
+    }
+    function shengli(){
+        var flag=1; 
+        for(var k=0;k<arr_lei.length;k++){
+            if(g('shuzi_'+arr_lei[k]).style.zIndex!=50){
+                flag=0;
+                break;
+            }   
+        }
+        if(flag==1){
+            clearTimeout(t);
+            g('zhedang').style.zIndex=100;
+            alert('你赢了');
+        }
+    }
+    function chongzhi(){
+        var html_zhengmian=[];
+        var html_chaqi=[];
+        var html_lei=[];
+        var html_shuzi=[];
+        html_zhengmian=g('.zhengmian');
+        html_chaqi=g('.chaqi');
+        html_lei=g('.lei');
+        html_shuzi=g('.shuzi');
+        for(var i=0;i<480;i++){
+            html_zhengmian[i].style.zIndex=40;
+            html_chaqi[i].style.zIndex=30;
+            html_lei[i].style.zIndex=1;
+            html_lei[i].style.opacity=0;
+            html_shuzi[i].style.zIndex=20;
+        }
+        arr_lei=[];
+        g('zhedang').style.zIndex=100;
+        clearTimeout(t);
+        g('text_time').innerHTML=0;
+    }
+    function zhedangtishi(){
+        alert('请点击 开始游戏');
+    }
+    var start_index;
+    function startgame(){
+        chongzhi();
+        var number=g('number').value;
+        if(number>=20&&number<=150){
+            //bulei(number);
+            g('zhedang').style.zIndex=0;
+            timer();
+            start_index=1;
+            g('text_shuliang').innerHTML=g('number').value;
+        }
+        else if(number==''||number<20){
+        alert('没有输入雷数或雷数为0');   
+        }
+        else {
+            alert('输入雷数过大');
+        }
+    }
+    var t;
+    function timer(){
+        g('text_time').innerHTML=+g('text_time').innerHTML+1;
+        t=setTimeout("timer()",1000);
+    }
+
+    document.oncontextmenu = function (){
+        return false;
+    }
+    addelemg('main','.saolei',480,'{{index}}');
+</script>
+</body>
+</html>
