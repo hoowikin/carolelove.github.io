@@ -8,7 +8,8 @@ ul li {
 	list-style: none;
 }
 a {
-	text-decoration: none;
+    text-decoration: none;
+    color: #fc1191;
 }
 img {
 	border: none;
@@ -19,7 +20,7 @@ img {
 }
 html, body {
 	color: #737373;
-	background: url(../images/bg.jpg) #E4E7E8 no-repeat center center;
+	background: url("../images/bg.JPG") #E4E7E8 no-repeat center center;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
