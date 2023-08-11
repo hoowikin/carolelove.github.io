@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>女武神配对</title>
+	<link rel="shortcut icon" href="../../images/icon.png"/>
+<link href="css/layout.css" type="text/css" rel="stylesheet" />
+<link href="css/findpair.css" type="text/css" rel="stylesheet" />
+<script src="js/findpair.js" type="text/javascript"></script>
+
+<!--弹层插件-->
+<link href="css/xtiper.css" type="text/css" rel="stylesheet" />
+<script src="js/xtiper.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<table class="ftable">
+  <tr><td><div id="fbox"></div></td></tr>
+</table>
+
+<div class="fbox_btn fbox_btn1">
+  <div class="outdiv">游戏规则：翻开两个格子，如果图案一致则配对，将其挑出，如果图案不一致则盖回去，直到所有格子都配对完成，游戏结束。</div>
+</div>
+
+<div class="fbox_btn fbox_btn2">  
+  <div id="output"></div>
+  <select id="hard" class="hard_select" onchange="changehard()">
+    <option value="0">--选择难度--</option>
+    <option value="1">难度1: 4x4</option>
+    <option value="2">难度2: 6x6</option>
+    <option value="3">难度3: 8x8</option>
+    <option value="4">难度4: 10x10</option>
+  </select>
+  <div><button onclick="changehard()">新游戏</button></div>
+</div>
+
+<script>
+//初始化
+fbox = new Findpair('fbox','output');
+
+//开始游戏
+fbox.newgame();
+
+//选择难度
+function changehard(obj)
+{
+  obj = document.getElementById("hard");
+  var index = obj.selectedIndex; // 选中索引
+  var result = obj.options[index].value; // 选中值
+  if(result==0){
+    result = fbox.hard ? fbox.hard : 1;
+  }
+
+  if(result){
+    //修改难度
+    fbox.set({
+      hard: result,
+    });
+
+    //开始游戏
+    fbox.newgame();
+  }
+}
+</script>
+
+</body>
+</html>
