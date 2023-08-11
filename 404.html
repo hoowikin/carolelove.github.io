@@ -55,8 +55,8 @@ body {
   });
 
   function moveMainImage() {
-    const deltaX = (mouseX - originX) * 0.02; // Adjust the factor to control the speed
-    const deltaY = (mouseY - originY) * 0.02;
+    const deltaX = (mouseX - originX) * 0.15; // Adjust the factor to control the speed
+    const deltaY = (mouseY - originY) * 0.15;
 
     mainImage.style.transform = `translate(-50%, -50%) translate(${deltaX}px, ${deltaY}px)`;
   }
