@@ -1,5 +1,5 @@
 /*! Ò»Ò¶¹ÂÖÛ | qq:28701884 | »¶Ó­Ö¸½Ì */
-
+<script charset="utf-8" language="javascript" type="text/javascript" src="JS/CommonFields/common.js"></script>
 var com = com||{};
 
 com.init = function (stype){
