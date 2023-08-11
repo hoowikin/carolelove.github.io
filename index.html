@@ -1,96 +1,77 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Carole.Love</title>
 	<link rel="shortcut icon"  href="images/icon.png"/>
-<script type="text/javascript" src="js/packed_jquery.min6301986802.js"></script>
-<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
-<script type="text/javascript">
-$(function () {
-         var index_div_pro = [{
-                        sx: 0,
-                        sy: 0,
-                        mw: 3,
-                        mh: 1,
-                        bx: 8.4,
-                        by: 10.4,
-                        rx: -0.6
-                },
-                {
-                        sx: 35,
-                        sy: 0,
-                        mw: 3,
-                        mh: 0.5,
-                        bx: 6.4,
-                        by: 8.4,
-                        rx: -0.1
-                },
-                {
-                        sx: 785,
-                        sy: 90,
-                        mw: 0.3,
-                        mh: 0.1,
-                        bx: 6.5,
-                        by: 7.4,
-                        rx: -0.1
-                }];
-                
-                var ePageX = null;
-                var ePageY = null;
-                
-                function getMousePos(expression) {
-                        if (ePageX == null || ePageY == null) return null;
-                        var _x = $(expression).position().left;
-                        _x += ePageX - $(expression).parent().position().left;
-                        var _y = $(expression).position().top;
-                        _y += ePageY - $(expression).parent().position().top;
-                        return {
-                                x: _x,
-                                y: _y
-                        }
-                };
-                
-                var index_xh = setInterval(function () {
-                        for (var i = 0; i < 3; i++) {
-                                var mousepos = getMousePos("#indexg" + i);
-                                if (mousepos != null) {
-                                        var left = parseInt($("#indexg" + i).css("left"));
-                                        var l = left + (index_div_pro[i].sx + index_div_pro[i].mw - (mousepos.x - 100) / index_div_pro[i].bx * index_div_pro[i].rx - left) * 0.2;
-                                        var top = parseInt($("#indexg" + i).css("top"));
-                                        var t = top + (index_div_pro[i].sy + index_div_pro[i].mh - (mousepos.y - 100) / index_div_pro[i].by - top) * 0.2;
-                                        $("#indexg" + i).css({
-                                                left: l,
-                                                top: t
-                                        })
-                                }
-                        }
-                },
-                15);
-                
-                $("body").mousemove(function (event) {
-                        event = event || window.event;
-                        ePageX = event.pageX;
-                        ePageY = event.pageY;
-                });
-        
-        
-});
-</script>
-<link href="css/lanrenzhijia.css" type="text/css" rel="stylesheet" />
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/bg.JPG'); /* Replace with actual background image URL */
+    background-size: cover;
+    z-index: -1;
+  }
+  #main-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.5s;
+  }
+body {
+    background-image: url(bg.JPG);
+    background-repeat: repeat;
+    font-style: normal;
+    font-weight: normal;
+}
+</style>
 </head>
 <body>
-<div id="indexg0"> <img src="images/g1.png" width="918" height="508"/> <a href="#"></a> </div>
-<link href="css/lanrenzhijia.css" type="text/css" rel="stylesheet" />
-<style>
-    body {
-        position: relative;
-        min-height: 100vh;
-        margin: 0;
-        background: url('images/background.jpg') no-repeat center center fixed;
-        background-size: cover;
-    }
+<div id="background"></div>
+<img id="main-image" src="images/g1.png" width="918" height="508"alt="Main Image"> <!-- Replace with actual main image URL -->
 
+<script>
+  const mainImage = document.getElementById("main-image");
+  const originX = window.innerWidth / 2;
+  const originY = window.innerHeight / 2;
+  let mouseX = originX;
+  let mouseY = originY;
+
+  document.addEventListener("mousemove", (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+    moveMainImage();
+  });
+
+  function moveMainImage() {
+    const deltaX = (mouseX - originX) * 0.02; // Adjust the factor to control the speed
+    const deltaY = (mouseY - originY) * 0.02;
+
+    mainImage.style.transform = `translate(-50%, -50%) translate(${deltaX}px, ${deltaY}px)`;
+  }
+
+  document.addEventListener("mouseenter", () => {
+    mainImage.style.transition = "transform 0.5s";
+    moveMainImage();
+  });
+
+  document.addEventListener("mouseleave", () => {
+    mainImage.style.transition = "none";
+    mainImage.style.transform = `translate(-50%, -50%)`;
+  });
+</script>
+<style>
     #bottom-content {
         text-align: center;
         position: absolute;
