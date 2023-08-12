@@ -30,25 +30,31 @@
     transition: transform 0.5s;
   }
 body {
-    background-image: url(bg.JPG);
+    background-image: url(images/bg.JPG);
     background-repeat: repeat;
     font-style: normal;
     font-weight: normal;
-    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
     font-size: x-small;
 }
 </style>
 </head>
 <body>
-<div id="background"></div>
-<img id="main-image" src="images/g1.png" width="918" height="508" alt="Main Image"> <!-- Replace with actual main image URL -->
-
+<img id="main-image" src="" alt="Main Image">
 <script>
-  const mainImage = document.getElementById("main-image");
-  const originX = window.innerWidth / 2;
-  const originY = window.innerHeight / 2;
-  let mouseX = originX;
-  let mouseY = originY;
+    const mainImage = document.getElementById('main-image');
+    const originX = window.innerWidth / 2;
+    const originY = window.innerHeight / 2;
+    
+    const imageGroup = [
+      'images/g1.png',
+      'images/g2.png'
+      // Add more image URLs here
+    ];
+
+    const randomIndex = Math.floor(Math.random() * imageGroup.length);
+    const randomImageUrl = imageGroup[randomIndex];
+    mainImage.src = randomImageUrl;
+
 
   document.addEventListener("mousemove", (event) => {
     mouseX = event.clientX;
