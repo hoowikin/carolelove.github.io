@@ -1,96 +1,133 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<title>卡萝尔的游戏厅</title>
-<link rel="shortcut icon" href="images/icon.png"/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<style type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
   body {
+    margin: 20px 0; /* Added margin to the top and bottom */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 40px); /* Consider margin when calculating viewport height */
+    background-color: #f0f0f0;
     background-image: url(images/bg.JPG);
     background-repeat: repeat;
-    font-family: 'Roboto', sans-serif;
   }
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
+
+  .frame {
+    background-color: white;
     padding: 20px;
-  }
-  h1 {
-    text-align: center;
-    color: #673AB7;
-  }
-  p {
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px;
     border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+    width: 400px;
   }
-  a {
-    text- : none;
-    color: #2196F3;
-    text-align: center;
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
+
+  .back-button {
+    background-color: #6a0dad;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .back-button:hover {
+    background-color: #500a8c;
+  }
+
   ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
   }
+
   li {
-    margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 10px;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
+    background-color: white;
+    transition: background-color 0.2s;
+    cursor: pointer;
+  }
+
+  li:hover {
+    background-color: #f5f5f5;
+  }
+
+  li:active {
+    background-color: #e0e0e0;
+  }
+
+  .list-content {
+    font-size: 18px;
+  }
+
+  .option-description {
+    font-size: 14px;
+    color: gray;
   }
 </style>
+<title>卡萝尔的游戏厅</title>
+	<link rel="shortcut icon" href="images/icon.png"/>
 </head>
-
 <body>
-<div class="container">
-  <h1>卡萝尔的游戏厅</h1>
-  <p><a href="index.html">&lt;返回主页</a></p>
-  <ul>
-    <li>
-		<a href="贪吃蛇.html">>>贪吃蛇（仅可用键鼠游玩）</a>
-		<p><em>经常会被初学网页制作的人用来练手。</em></p>
-	  </li>
-    <li>
-		<a href="games/javascript-racer-master/index.html">&nbsp;>>3D赛车（仅可用键鼠游玩）</a>&nbsp; &nbsp; <a href="https://github.com/jakesgordon/javascript-racer/">项目地址</a>
-		<p><em>没有哪个男生会拒绝赛车的诱惑。</em></p>
-	  </li>
-    <li>
-		<a href="games/backbone-game-engine-gh-pages/super-mario-bros/index.html">>>超级马里奥</a> <a href="https://github.com/martindrapeau/backbone-game-engine">项目地址</a>&nbsp;
-		<p><em>一代经典。WASD或方向键控制方向，X键跳跃。</em></p>
-	  </li>
-    <li>
-		<a href="games/clumsy-bird-master/index.html">>>Clumsy Bird</a> <a href="https://github.com/ellisonleao/clumsy-bird">项目地址</a>&nbsp;
-		<p><em>小心碰头。</em></p>
-	  </li>
-    <li>
-		<a href="games/FruitNinja/index.html">>>水果忍者</a> <a href="https://7npmedia.w3cschool.cn/1-FruitNinja.7z">源代码</a>&nbsp;
-		<p><em>经典手游，电脑重现。</em></p>
-	  </li>
-    <li>
-		<a href="games/wuziqi.html">>>五子棋</a> <a href="https://blog.csdn.net/qq_44809707/article/details/122559944">源代码</a>&nbsp;
-	    <p><em>很难想像电脑怎么赢的。</em></p>
-	  </li>
-    <li>
-		<a href="games/xiangqi/index.html">>>中国象棋&nbsp;</a>
-		<p><em>树荫下退休老大爷的最爱。</em></p>
-	  </li>
-    <li>
-		<a href="minesweeper.html">>>扫雷&nbsp;<br></a>
-		<p><em>测试电脑性能的绝佳工具。</em></p>
-	  </li>
-    <li>
-		<a href="games/CatchThatCat-master/index.html">&gt;&gt;围住小猫&nbsp; </a><a href="https://github.com/zhbink/CatchThatCat">项目地址</a><a href="games/CatchThatCat-master/index.html"><br></a>
-	  <p><em>你我就像里面的小猫，被监视，被驱使，但我们无法逃脱。</em></p>
-	  </li>
-	<li>
-		<a href="games/findpair-master/index.html">&gt;&gt;女武神配对&nbsp; </a><a href="https://gitee.com/ovsexia/findpair">项目地址</a><br></a>
-	  <p><em>认识女武神的最好办法。</em></p>
-	  </li>
-  </ul>
-	<p><em>本网站不对第三方网站内容负责</em></p>
-</div>
+  <div class="frame">
+    <div class="title">
+      <span><strong>卡萝尔的游戏厅</strong></span>
+      <button class="back-button" onclick="window.location.href='index.html';">返回</button>
+    </div>
+    <ul>
+      <li onclick="window.location.href='games/tanchishe/贪吃蛇.html';">
+        <div class="list-content">贪吃蛇</div>
+        <div class="option-description">经常会被初学网页制作的人用来练手(只能用键盘或鼠标游玩)</div>
+      </li>
+      <li onclick="window.location.href='games/minesweeper.html';">
+        <div class="list-content">扫雷</div>
+        <div class="option-description">测试电脑性能的绝佳工具</div>
+      </li>
+      <li onclick="window.location.href='games/xiangqi/index.html';">
+        <div class="list-content">中国象棋</div>
+        <div class="option-description">树荫下退休老大爷的最爱</div>
+      </li>
+	  <li onclick="window.location.href='games/javascript-racer-master/index.html';">
+        <div class="list-content">3D赛车</div>
+        <div class="option-description">没有哪个男生会拒绝赛车的诱惑(只能用键盘或鼠标游玩)</div>
+      </li>
+	  <li onclick="window.location.href='games/backbone-game-engine-gh-pages/super-mario-bros/index.html';">
+        <div class="list-content">超级马里奥</div>
+        <div class="option-description">一代经典。WASD或方向键控制方向，X键跳跃</div>
+      </li>
+	  <li onclick="window.location.href='games/clumsy-bird-master/index.html';">
+        <div class="list-content">Clumsy Bird</div>
+        <div class="option-description">小心碰头</div>
+      </li>
+	  <li onclick="window.location.href='games/FruitNinja/index.html';">
+        <div class="list-content">水果忍者</div>
+        <div class="option-description">经典手游，电脑重现</div>
+      </li>
+	  <li onclick="window.location.href='games/wuziqi.html';">
+        <div class="list-content">五子棋</div>
+        <div class="option-description">很难想像电脑怎么赢的。</div>
+      </li>
+	  <li onclick="window.location.href='games/CatchThatCat-master/index.html';">
+        <div class="list-content">围住小猫</div>
+        <div class="option-description">你我就像里面的小猫，被监视，被驱使，但我们无法逃脱</div>
+      </li>
+	  <li onclick="window.location.href='games/findpair-master/index.html';">
+        <div class="list-content">女武神配对</div>
+        <div class="option-description">认识女武神的最好办法</div>
+      </li>
+    </ul>
+  </div>
 </body>
 </html>

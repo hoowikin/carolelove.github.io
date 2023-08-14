@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    margin: 20px 0; /* Added margin to the top and bottom */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 40px); /* Consider margin when calculating viewport height */
+    background-color: #f0f0f0;
+    background-image: url(images/bg.JPG);
+    background-repeat: repeat;
+  }
+
+  .frame {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+    width: 400px;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .back-button {
+    background-color: #6a0dad;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .back-button:hover {
+    background-color: #500a8c;
+  }
+
+  .content {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+</style>
+<title>关于</title>
+	<link rel="shortcut icon" href="images/icon.png"/>
+</head>
+<body>
+  <div class="frame">
+    <div class="title">
+      <span><strong>关于</strong></span>
+      <button class="back-button" onclick="window.location.href='index.html';">返回</button>
+    </div>
+    <div class="content">
+    <p>本网站因个人兴趣开发，与米哈游及附属公司无关。</p>
+    <p>崩坏3及其游戏内的一切内容，包括角色、剧情、图片、视频等内容归属米哈游及附属公司所有，受中华人民共和国及其他国家的相应著作权法律保护。</p>
+	<p>本网站不对第三方网站内容及有效性负责。</p>
+	<p><strong>所使用的源代码：</strong></p>
+      <p><a href="https://github.com/jakesgordon/javascript-racer/">https://github.com/jakesgordon/javascript-racer/</a></p>
+		<p><a href="https://github.com/martindrapeau/backbone-game-engine">https://github.com/martindrapeau/backbone-game-engine</a></p>
+		<p><a href="https://github.com/ellisonleao/clumsy-bird">https://github.com/ellisonleao/clumsy-bird</a></p>
+		<p><a href="https://7npmedia.w3cschool.cn/1-FruitNinja.7z">https://7npmedia.w3cschool.cn/1-FruitNinja.7z</a></p>
+		<p><a href="https://blog.csdn.net/qq_44809707/article">https://blog.csdn.net/qq_44809707/article
+			/details/122559944</a></p>
+		<p><a href="https://github.com/zhbink/CatchThatCat">https://github.com/zhbink/CatchThatCat</a></p>
+		<p><a href="https://gitee.com/ovsexia/findpair">https://gitee.com/ovsexia/findpair</a></p>
+		<p><a href="https://zhuanlan.zhihu.com/p/585222210">https://zhuanlan.zhihu.com/p/585222210</a></p>
+		<p><a href="https://saythemoney.github.io/">https://saythemoney.github.io/</a></p>
+    </div>
+  </div>
+</body>
+</html>
