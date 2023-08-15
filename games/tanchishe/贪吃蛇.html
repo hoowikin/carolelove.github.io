@@ -6,9 +6,45 @@
 	<title>html5贪吃蛇小游戏</title>
 	<link rel="shortcut icon"  href="images/icon.png"/>
 	<script type="text/javascript" src="贪吃蛇.js"></script>
+<style>
+    .arrow-keys {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+        max-width: 200px;
+        margin: 0 auto;
+        text-align: center;
+    }
 
+    .arrow-button {
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
+    }
+</style>
 	<script>
+    // Function to handle keydown event
+    function handleKeydown(event) {
+        // Check if the event target is not an input, textarea, or game element
+        if (event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && !event.target.classList.contains("game-element")) {
+            // Check if the pressed key is an arrow key (37-40)
+            if (event.keyCode >= 37 && event.keyCode <= 40) {
+                event.preventDefault(); // Prevent the default behavior
+            }
+        }
+    }
 
+    // Attach the keydown event listener to the whole document
+    document.addEventListener("keydown", handleKeydown);
+	    // Function to simulate arrow key presses
+    function simulateArrowKeyPress(keyCode) {
+        var event = new KeyboardEvent('keydown', {
+            bubbles: true,
+            cancelable: true,
+            keyCode: keyCode
+        });
+        document.dispatchEvent(event);
+    }
 	</script>
 </head>
 <body>
@@ -48,4 +84,10 @@ body{
 		snake.init();
 
 	</script>
+	<button onclick="simulateArrowKeyPress(37)">Simulate Left Arrow Key</button>
+    <button onclick="simulateArrowKeyPress(38)">Simulate Up Arrow Key</button>
+    <button onclick="simulateArrowKeyPress(39)">Simulate Right Arrow Key</button>
+    <button onclick="simulateArrowKeyPress(40)">Simulate Down Arrow Key</button>
+
 </body>
+</html>
