@@ -48,28 +48,7 @@ body {
   let mouseX = originX;
   let mouseY = originY;
 
-  document.addEventListener("mousemove", (event) => {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-    moveMainImage();
-  });
 
-  function moveMainImage() {
-    const deltaX = (mouseX - originX) * 0.15; // Adjust the factor to control the speed
-    const deltaY = (mouseY - originY) * 0.15;
-
-    mainImage.style.transform = `translate(-50%, -50%) translate(${deltaX}px, ${deltaY}px)`;
-  }
-
-  document.addEventListener("mouseenter", () => {
-    mainImage.style.transition = "transform 0.5s";
-    moveMainImage();
-  });
-
-  document.addEventListener("mouseleave", () => {
-    mainImage.style.transition = "none";
-    mainImage.style.transform = `translate(-50%, -50%)`;
-  });
 </script>
 </body>
 </html>
