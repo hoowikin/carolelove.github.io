@@ -24,34 +24,62 @@
   }
 </style>
 <script>
-  function getRandomNumbers(min, max, count) {
-    //生成一个从min到max的不重复的随机数数组，长度为count
-    var arr = [];
-    while (arr.length < count) {
-      var num = Math.floor(Math.random() * (max - min + 1)) + min;
-      if (arr.indexOf(num) == -1) {
-        arr.push(num);
-      }
-    }
-    return arr;
-  }
+    var timer; //定义一个定时器变量
+    var redNums; //定义一个存放红色数的数组
+    var blueNums; //定义一个存放蓝色数的数组
 
-  function showNumbers() {
-    //显示随机数
-    var redNums = getRandomNumbers(1, 33, 6); //从1到33抽取6个红色数
-    var blueNums = getRandomNumbers(1, 16, 1); //从1到16抽取1个蓝色数
-    var redStr = redNums.join(" "); //把红色数用空格连接成字符串
-    var blueStr = blueNums.join(" "); //把蓝色数用空格连接成字符串
-    document.getElementById("red").innerHTML = redStr; //把红色数显示在网页上
-    document.getElementById("blue").innerHTML = blueStr; //把蓝色数显示在网页上
-  }
+    function getRandomNumbers(min, max, count) {
+        //生成一个从min到max的不重复的随机数数组，长度为count
+        var arr = [];
+        while (arr.length < count) {
+            var num = Math.floor(Math.random() * (max - min + 1)) + min;
+            if (arr.indexOf(num) == -1) {
+                arr.push(num);
+            }
+        }
+        return arr;
+    }
+
+    function showNumbers() {
+        //显示随机数
+        redNums = getRandomNumbers(1, 33, 6); //从1到33抽取6个红色数
+        blueNums = getRandomNumbers(1, 16, 1); //从1到16抽取1个蓝色数
+        var redStr = redNums.join(" "); //把红色数用空格连接成字符串
+        var blueStr = blueNums.join(" "); //把蓝色数用空格连接成字符串
+        document.getElementById("red").innerHTML = redStr; //把红色数显示在网页上
+        document.getElementById("blue").innerHTML = blueStr; //把蓝色数显示在网页上
+        document.getElementById("start").disabled = false; //把开始按钮设为可用
+    }
+
+    function simulate() {
+        //模拟随机数抽取的过程
+        var randomReds = getRandomNumbers(1, 33, 6); //生成6个随机的红色数
+        var randomBlues = getRandomNumbers(1, 16, 1); //生成1个随机的蓝色数
+        var randomRedStr = randomReds.join(" "); //把随机的红色数用空格连接成字符串
+        var randomBlueStr = randomBlues.join(" "); //把随机的蓝色数用空格连接成字符串
+        document.getElementById("red").innerHTML = randomRedStr; //把随机的红色数显示在网页上
+        document.getElementById("blue").innerHTML = randomBlueStr; //把随机的蓝色数显示在网页上
+    }
+
+    function start() {
+        //开始按钮的点击事件处理函数
+        document.getElementById("start").disabled = true; //把开始按钮设为不可用
+        timer = setInterval(simulate, 100); //每100毫秒执行一次模拟函数
+        setTimeout(stop, 5000); //5秒后执行停止函数
+    }
+
+    function stop() {
+        //停止按钮的点击事件处理函数
+        clearInterval(timer); //清除定时器
+        showNumbers(); //显示真正的随机数
+    }
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
     <h1>双色球选号模拟器</h1>
     <button onclick='location.href=("lottery_index.html")'>返回</button>
-    <button onclick="showNumbers()">开始</button>
+    <button id="start" onclick="start()">开始</button>
     <p id="red" style="color:red"></p>
     <p id="blue" style="color:blue"></p>
     <p>网页显示结果不代表开奖结果</p>
