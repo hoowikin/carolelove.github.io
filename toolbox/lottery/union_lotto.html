@@ -1,0 +1,54 @@
+<html>
+<head>
+<style>
+  body {
+    background-color: lightgray;
+    text-align: center;
+  }
+  h1 {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  button {
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 10px;
+  }
+  p {
+    font-size: 30px;
+    font-weight: bold;
+  }
+</style>
+<script>
+  function getRandomNumbers(min, max, count) {
+    //生成一个从min到max的不重复的随机数数组，长度为count
+    var arr = [];
+    while (arr.length < count) {
+      var num = Math.floor(Math.random() * (max - min + 1)) + min;
+      if (arr.indexOf(num) == -1) {
+        arr.push(num);
+      }
+    }
+    return arr;
+  }
+
+  function showNumbers() {
+    //显示随机数
+    var redNums = getRandomNumbers(1, 33, 6); //从1到33抽取6个红色数
+    var blueNums = getRandomNumbers(1, 16, 1); //从1到16抽取1个蓝色数
+    var redStr = redNums.join(" "); //把红色数用空格连接成字符串
+    var blueStr = blueNums.join(" "); //把蓝色数用空格连接成字符串
+    document.getElementById("red").innerHTML = redStr; //把红色数显示在网页上
+    document.getElementById("blue").innerHTML = blueStr; //把蓝色数显示在网页上
+  }
+</script>
+</head>
+<body>
+    <h1>双色球选号模拟器</h1>
+    <button onclick='location.href=("lottery_index.html")'>返回</button>
+    <button onclick="showNumbers()">开始</button>
+    <p id="red" style="color:red"></p>
+    <p id="blue" style="color:blue"></p>
+</body>
+</html>
