@@ -43,6 +43,7 @@
             margin: 0;
             padding: 0;
             height: 100%;
+            z-index: 997;
             overflow: hidden;
         }
 
@@ -58,12 +59,13 @@
         }
 
         #main-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.5s;
-    font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.5s;
+            font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
+            z-index: 997;
         }
 
         body {
@@ -177,7 +179,7 @@
             moveMainImage();
         });
 
-        鼠标离开浏览器界面时不恢复原来位置
+        //鼠标离开浏览器界面时不恢复原来位置
         document.addEventListener("mouseleave", () => {
             mainImage.style.transition = "none";
             mainImage.style.transform = `translate(-50%, -50%)`;
@@ -194,6 +196,7 @@
             left: 0;
             right: 0;
             padding: 0px;
+            z-index: 998;
             background-color: rgba(0, 0, 0, 0.7);
             color: #fc1191;
             font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", "Helvetica", "Arial";
