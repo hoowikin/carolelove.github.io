@@ -73,12 +73,26 @@
             font-weight: normal;
             font-size: x-small;
         }
+
+        .bubble {
+            display: none;
+            position: fixed; /* 修改为fixed定位，相对于视口而不是文档流 */
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 14px;
+            z-index: 999;
+            top: 70%; /* 垂直居中，相对于视口 */
+            left: 50%; /* 水平居中，相对于视口 */
+            transform: translate(-50%, -50%); /* 通过平移来修正位置 */
     </style>
 </head>
 <body>
     <img id="main-image" src="" alt="Main Image">
+    <div class="bubble" id="bubble"></div>
     <script>
         const mainImage = document.getElementById('main-image');
+        const bubble = document.getElementById('bubble'); // 获取气泡元素
         const originX = window.innerWidth / 2;
         const originY = window.innerHeight / 2;
 
@@ -92,6 +106,53 @@
             'images/g7.webp'
             // Add more image URLs here
         ];
+        // 鼠标点击事件
+        mainImage.addEventListener("click", () => {
+            // 随机选择一段文字
+            const randomTexts = [
+                "我一点也不怕冷！哎，多半是得益于我妈强大的基因……",
+                "好累呀，我休息一会，你装作什么也没看见好不好？",
+                "如果队长问起我的表现来，能帮我说说好话吗？求求你啦。",
+                "啊～你喜欢看电影吗？听说《太虚皇帝》的剧场版上映了。",
+                "这艘飞船是《魔剑神机》里的穿越高阔号吗？简直一模一样！",
+                "打扮自己，四处去玩，应该才是我这个年纪的女孩儿想做的事吧……",
+                "任务结束啦！有什么事明天再说吧，现在是玩耍时间！",
+                "唉～经常这么值班腿不会变粗吧，我不要那么多肌肉啊。",
+                "唉～如果能边玩游戏边吃美食边赚钱，那该有多好呀。",
+                "哦？黑一点的女孩子也很可爱，怎么……怎么突然说这种奇怪的话。",
+                "听说我妈曾经是很厉害的女武神，那她上过这艘飞船吗？",
+                "你也想试试咪啾枕头四号？你能拿得起它吗。",
+                "嘻嘻～上次金洁尔偷喝了主教大人的饮料，结果是苦瓜汁，哈哈。",
+                "我会保护好这个世界的，毕竟我是第三小队的希望之星嘛！",
+                "真羡慕队长呀，又白又漂亮，身材还很好，应该没人会不喜欢吧。",
+                "总有一天我会让自己强大到能保护所有人，等着瞧吧！",
+                "刚才找不到你，就不小心把你房间的门捶坏了，你不会怪我吧？",
+                "该休息啦，长时间对着屏幕可是会长痘痘的。",
+                "休息时间到，养足精神才有力气再玩……我是说，工作嘛~",
+                "你要是困了的话，我可以借咪啾枕头四号给你去睡一会。",
+                "今天的工作做完了，一起去游乐园放松一下怎么样？",
+                "你已经把一周的任务都干完啦？那我就不用干咯！",
+                "人为什么要起床呢？根本睡不够呀。",
+                "你也想试试咪啾枕头4号？你能拿的起它吗？",
+                "唉？这身衣服的风格，确实很适合我这样的spice girl。",
+                "啊？是给我的吗？想不到，你还挺懂女孩子的嘛。嘿嘿。",
+                "哇！这衣服太好看了，就像动漫里的女主角一样。",
+                // 添加更多随机文本
+            ];
+            const randomIndex = Math.floor(Math.random() * randomTexts.length);
+            const randomText = randomTexts[randomIndex];
+
+            // 设置气泡内容
+            bubble.textContent = randomText;
+
+            // 显示气泡
+            bubble.style.display = "block";
+
+            // 隐藏气泡（可选，根据需要决定是否添加）
+            setTimeout(() => {
+                bubble.style.display = "none";
+            }, 5000); // 5秒后隐藏气泡
+        });
 
         const randomIndex = Math.floor(Math.random() * imageGroup.length);
         const randomImageUrl = imageGroup[randomIndex];
@@ -135,7 +196,7 @@
             padding: 0px;
             background-color: rgba(0, 0, 0, 0.7);
             color: #fc1191;
-			font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", "Helvetica", "Arial";
+            font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", "Helvetica", "Arial";
         }
 
             #bottom-content a {
