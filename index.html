@@ -87,6 +87,7 @@
             top: 70%; /* 垂直居中，相对于视口 */
             left: 50%; /* 水平居中，相对于视口 */
             transform: translate(-50%, -50%); /* 通过平移来修正位置 */
+        }
     </style>
 </head>
 <body>
@@ -180,10 +181,29 @@
         });
 
         //鼠标离开浏览器界面时不恢复原来位置
+        let isMouseOutside = false;
+
         document.addEventListener("mouseleave", () => {
-            mainImage.style.transition = "none";
-            mainImage.style.transform = `translate(-50%, -50%)`;
+            isMouseOutside = true;
         });
+
+        document.addEventListener("mouseenter", () => {
+            isMouseOutside = false;
+            mainImage.style.transition = "transform 0.5s";
+            moveMainImage();
+        });
+
+        // Check if the mouse is outside the browser window and move the image accordingly
+        document.addEventListener("mousemove", (event) => {
+            if (isMouseOutside) {
+                return;
+            }
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+            moveMainImage();
+        });
+
+
 
 
 
