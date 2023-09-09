@@ -96,6 +96,8 @@
     <script>
         const mainImage = document.getElementById('main-image');
         const bubble = document.getElementById('bubble'); // 获取气泡元素
+        let bubbleVisible = false; // Flag to track bubble visibility
+        let bubbleTimeout; // Variable to store the timeout
         const originX = window.innerWidth / 2;
         const originY = window.innerHeight / 2;
 
@@ -155,6 +157,28 @@
             setTimeout(() => {
                 bubble.style.display = "none";
             }, 5000); // 5秒后隐藏气泡
+        });
+
+        mainImage.addEventListener("click", () => {
+            if (!bubbleVisible) { // Check if bubble is not already visible
+                // Random text generation and setting bubble content
+                const randomIndex = Math.floor(Math.random() * randomTexts.length);
+                const randomText = randomTexts[randomIndex];
+                bubble.textContent = randomText;
+
+                // Display the bubble
+                bubble.style.display = "block";
+                bubbleVisible = true; // Set the flag to true
+
+                // Clear any existing timeout (if any)
+                clearTimeout(bubbleTimeout);
+
+                // Set a new timeout to hide the bubble after 5 seconds
+                bubbleTimeout = setTimeout(() => {
+                    bubble.style.display = "none";
+                    bubbleVisible = false; // Reset the flag
+                }, 5000);
+            }
         });
 
         const randomIndex = Math.floor(Math.random() * imageGroup.length);
