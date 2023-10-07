@@ -12,12 +12,30 @@
     color: black;
     font-family: Arial, Helvetica, sans-serif;
   }
-  button {
-    width: 100px;
-    height: 50px;
-    font-size: 20px;
-    border-radius: 10px;
-  }
+
+  .button {
+            display: inline-block;
+            padding: 8px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: center;   
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #500a8c;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px #999;
+        }
+
+        .button:hover {background-color: #7b0fd8}
+
+        .button:active {
+            background-color: #500a8c;
+            box-shadow: 0 3px #666;
+            transform: translateY(4px);
+        }
+        
   p {
     font-size: 30px;
     font-weight: bold;
@@ -78,8 +96,8 @@
 </head>
 <body>
     <h1>双色球选号模拟器</h1>
-    <button onclick='location.href=("lottery_index.html")'>返回</button>
-    <button id="start" onclick="start()">开始</button>
+    <button class="button" onclick='location.href=("lottery_index.html")'>返回</button>
+    <button class="button" id="start" onclick="start()">开始</button>
     <p id="red" style="color:red"></p>
     <p id="blue" style="color:blue"></p>
     <p>网页显示结果不代表开奖结果</p>
