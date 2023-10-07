@@ -42,55 +42,59 @@
   }
 </style>
 <script>
-  var timer; //定义一个定时器变量
-  var redNums; //定义一个存放红色数的数组
-  var blueNums; //定义一个存放蓝色数的数组
+var timer; //定义一个定时器变量
+var redNums; //定义一个存放红色数的数组
+var blueNums; //定义一个存放蓝色数的数组
+var isRunning = false; //定义一个标志变量，表示当前是否正在运行
 
-  function getRandomNumbers(min, max, count) {
-    //生成一个从min到max的不重复的随机数数组，长度为count
-    var arr = [];
-    while (arr.length < count) {
-      var num = Math.floor(Math.random() * (max - min + 1)) + min;
-      if (arr.indexOf(num) == -1) {
-        arr.push(num);
-      }
+function getRandomNumbers(min, max, count) {
+  //生成一个从min到max的不重复的随机数数组，长度为count
+  var arr = [];
+  while (arr.length < count) {
+    var num = Math.floor(Math.random() * (max - min + 1)) + min;
+    if (arr.indexOf(num) == -1) {
+      arr.push(num);
     }
-    return arr;
   }
+  return arr;
+}
 
-  function showNumbers() {
-    //显示随机数
-    redNums = getRandomNumbers(1, 35, 5); //从1到35抽取5个红色数
-    blueNums = getRandomNumbers(1, 12, 2); //从1到12抽取2个蓝色数
-    var redStr = redNums.join(" "); //把红色数用空格连接成字符串
-    var blueStr = blueNums.join(" "); //把蓝色数用空格连接成字符串
-    document.getElementById("red").innerHTML = redStr; //把红色数显示在网页上
-    document.getElementById("blue").innerHTML = blueStr; //把蓝色数显示在网页上
+function showNumbers() {
+  //显示随机数
+  redNums = getRandomNumbers(1, 35, 5); //从1到35抽取5个红色数
+  blueNums = getRandomNumbers(1, 12, 2); //从1到12抽取2个蓝色数
+  var redStr = redNums.join(" "); //把红色数用空格连接成字符串
+  var blueStr = blueNums.join(" "); //把蓝色数用空格连接成字符串
+  document.getElementById("red").innerHTML = redStr; //把红色数显示在网页上
+  document.getElementById("blue").innerHTML = blueStr; //把蓝色数显示在网页上
+}
+
+function simulate() {
+  //模拟随机数抽取的过程
+  var randomReds = getRandomNumbers(1, 35, 5); //生成5个随机的红色数
+  var randomBlues = getRandomNumbers(1, 12, 2); //生成2个随机的蓝色数
+  var randomRedStr = randomReds.join(" "); //把随机的红色数用空格连接成字符串
+  var randomBlueStr = randomBlues.join(" "); //把随机的蓝色数用空格连接成字符串
+  document.getElementById("red").innerHTML = randomRedStr; //把随机的红色数显示在网页上
+  document.getElementById("blue").innerHTML = randomBlueStr; //把随机的蓝色数显示在网页上
+}
+
+function start() {
+  if (!isRunning) { //如果当前没有在运行，则开始运行
+    isRunning = true;
+    document.getElementById("start").innerHTML = "停止"; //把按钮文本改为“停止”
+    timer = setInterval(simulate, 50); //每100毫秒执行一次模拟函数
     document.getElementById("start").disabled = false; //把开始按钮设为可用
-  }
-
-  function simulate() {
-    //模拟随机数抽取的过程
-    var randomReds = getRandomNumbers(1, 35, 5); //生成5个随机的红色数
-    var randomBlues = getRandomNumbers(1, 12, 2); //生成2个随机的蓝色数
-    var randomRedStr = randomReds.join(" "); //把随机的红色数用空格连接成字符串
-    var randomBlueStr = randomBlues.join(" "); //把随机的蓝色数用空格连接成字符串
-    document.getElementById("red").innerHTML = randomRedStr; //把随机的红色数显示在网页上
-    document.getElementById("blue").innerHTML = randomBlueStr; //把随机的蓝色数显示在网页上
-  }
-
-  function start() {
-    //开始按钮的点击事件处理函数
-    document.getElementById("start").disabled = true; //把开始按钮设为不可用
-    timer = setInterval(simulate, 100); //每100毫秒执行一次模拟函数
     setTimeout(stop, 5000); //5秒后执行停止函数
-  }
-
-  function stop() {
-    //停止按钮的点击事件处理函数
+  } else { //如果当前正在运行，则停止运行
+    isRunning = false;
+    document.getElementById("start").innerHTML = "开始"; //把按钮文本改为“开始”
     clearInterval(timer); //清除定时器
     showNumbers(); //显示真正的随机数
+    document.getElementById("start").disabled = false; //把开始按钮设为可用
   }
+}
+
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
